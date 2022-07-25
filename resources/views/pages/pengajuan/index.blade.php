@@ -72,14 +72,19 @@
                                                 <h5><span class="badge badge-warning">Kode berkas belum ditambahkan!</span></h5>
                                             @endif
                                         </td>
-                                        @canany('pengajuan-kredit-edit', 'pengajuan-kredit-delete', 'pengajuan-kredit-qrcode')
+                                        @canany('pengajuan-kredit-edit', 'pengajuan-kredit-delete', 'pengajuan-kredit-qrcode', 'pengajuan-kredit-qrcode', 'pengajuan-kredit-progress')
                                         <td class="text-center">
-                                            <a href="#" type="button" data-toggle="modal" data-target="#modal-progress{{ $item->id }}" class="btn btn-icon btn-primary"><i class="fas fa-chart-line"></i></a>
-                                            {{-- @can('pengajuan-kredit-qrcode')                                                     --}}
-                                                <a href="#" type="button" data-toggle="modal" data-target="#modal-qrcode{{ $item->id }}" class="btn btn-icon btn-info"><i class="fas fa-qrcode"></i></a>
-                                            {{-- @endcan --}}
+                                            @can('pengajuan-kredit-progress')
+                                                <a href="#" type="button" data-toggle="modal" data-target="#modal-progress{{ $item->id }}" class="btn btn-icon btn-primary"><i class="fas fa-chart-line"></i></a>                                                
+                                            @endcan
+                                            @can('pengajuan-kredit-qrcode')                                                    
+                                                <a href="#" type="button" data-toggle="modal" data-target="#modal-qrcode{{ $item->id }}" class="btn btn-icon btn-secondary"><i class="fas fa-qrcode"></i></a>
+                                            @endcan
                                             @can('pengajuan-kredit-edit')                                                    
                                                 <a href="{{ route('pengajuan-kredit.edit',[$item->id]) }}" class="btn btn-icon btn-warning"><i class="fas fa-edit"></i></a>
+                                            @endcan
+                                            @can('pengajuan-kredit-show')                                                    
+                                                <a href="{{ route('pengajuan-kredit.show',[$item->id]) }}" class="btn btn-icon btn-info"><i class="fas fa-file-alt"></i></a>
                                             @endcan
                                             @can('pengajuan-kredit-delete')  
                                                 <a href="#" type="button" data-toggle="modal" data-target="#modal-hapus{{ $item->id }}" class="btn btn-icon btn-danger"><i class="fas fa-trash-alt"></i></a>                                            

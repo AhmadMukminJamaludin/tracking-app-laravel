@@ -133,7 +133,8 @@ class PengajuanKreditController extends Controller
      */
     public function show($id)
     {
-        //
+        $kredit = Kredit::where('id', $id)->with('berkas')->get();
+        return view('pages.pengajuan.show', compact('kredit'));
     }
 
     /**
